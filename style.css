@@ -22,7 +22,14 @@ label{display:block;margin:12px 0 4px;font:600 .9rem system-ui}input[type=date],
 .row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.muted{color:#666;font-size:.85rem;font-family:system-ui}
 dialog{max-width:520px;width:92%;border:0;border-radius:12px;padding:18px}dialog::backdrop{background:#0006}
 @media print{nav,#banner,input[type=checkbox],button{display:none!important}header{background:none;color:#000}.ex .note{display:block}body{padding:0;font-size:11pt}}
-.media{margin:0 0 8px}.media img{display:block;max-width:100%;max-height:300px;margin:0 auto;background:#fff}
+.media{margin:0 0 8px}
 .media figcaption{font:.75rem system-ui;color:#555;margin-top:4px}.variant{font:.85rem system-ui;background:#fff4d6;padding:4px 6px;margin-top:4px;border-radius:4px}
 .credit{display:flex;gap:10px;border-bottom:1px solid var(--line);padding:10px 0;font:.85rem/1.4 system-ui}.credit img{width:84px;height:84px;object-fit:contain;flex:none;background:#fff}
 a{color:var(--c)}
+.mbox{position:relative;width:100%;max-width:360px;margin:0 auto;background:#fff;overflow:hidden;border-radius:6px}
+.mbox img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .35s ease}
+.mbox img.on{opacity:1}.mbox[data-n]{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.mbox[data-n]:focus-visible{outline:3px solid var(--c);outline-offset:2px}
+.badge{position:absolute;right:6px;bottom:6px;font:600 .72rem system-ui;color:#fff;background:#0009;padding:2px 7px;border-radius:10px;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.mbox img{transition:none}}
+@media print{.badge{display:none}}

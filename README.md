@@ -63,13 +63,13 @@ registerPlan({
 The daily reminder and week notifications use the Notification API through the service worker. They fire only while the app, or the browser holding it, is running. There's no push server, so a closed app won't notify you. iOS supports notifications only for an app installed to the Home Screen (iOS 16.4+) and still requires the app to be running. Week and retest reminders always appear in the app when you open it.
 
 ## Exercise media
-Bundled under `media/`: 21 items, about 460 KB total, all cached by the service worker.
+Bundled under `media/`: 21 items (28 files; 7 have start/end frames that crossfade on tap), about 600 KB total, all cached by the service worker.
 - **CDC "Growing Stronger" GIFs:** public domain, kept unmodified.
 - **wger.de, Wikimedia Commons, and free-exercise-db stills:** resized to 600 px wide and converted to WebP. Derivatives of CC BY-SA images remain CC BY-SA.
 
 Each exercise can carry an optional `media` field:
 ```js
-media: { file: "media/x.webp", type: "image" | "gif", license: "CC BY-SA 4.0", licenseUrl, author, sourceUrl,
+media: { frames: [{ file: "media/x.webp", sourceUrl, label: "Start" }, { file: "media/x-2.webp", sourceUrl, label: "End", changes }], width, height, type: "image" | "gif", license: "CC BY-SA 4.0", licenseUrl, author, sourceUrl,
          changes: "Resized…", variant?: "Shown with barbell; do it bodyweight." }
 ```
 The image appears in the exercise detail with a one-line credit. The `variant` text shows as a warning label. Settings → Credits lists every item. When you add media files, add them to `ASSETS` in `sw.js` and bump `CACHE`.

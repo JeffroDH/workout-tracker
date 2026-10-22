@@ -126,24 +126,38 @@ function exHtml(ex, dateIso, dayNum, interactive) {
   <div class="note">${mediaHtml(ex.media)}${esc(ex.note)}${ex.harder ? '<br><i>Harder: ' + esc(ex.harder) + '</i>' : ''}</div></div></div>`;
 }
 function mediaHtml(m) {
-  if (!m) return '';
-  return `<figure class="media"><img src="${esc(m.file)}" alt="Demonstration" loading="lazy" decoding="async">
+  if (!m || !m.frames) return '';
+  const n = m.frames.length, lab = i => m.frames[i].label || (i ? 'End position' : 'Start position');
+  const imgs = m.frames.map((f, i) => `<img src="${esc(f.file)}" alt="" class="${i ? '' : 'on'}" loading="lazy" decoding="async">`).join('');
+  const box = n > 1
+    ? `<div class="mbox" role="button" tabindex="0" data-i="0" data-n="${n}" style="aspect-ratio:${m.width}/${m.height}" aria-label="Demonstration, ${esc(lab(0))} (1 of ${n}). Press to show ${esc(lab(1))}." data-labels="${esc(JSON.stringify(m.frames.map((f, i) => lab(i))))}">${imgs}<span class="badge" aria-hidden="true">1/${n} ⇄</span></div>`
+    : `<div class="mbox single" style="aspect-ratio:${m.width}/${m.height}" role="img" aria-label="Demonstration image">${imgs}</div>`;
+  return `<figure class="media">${box}
   ${m.variant ? `<div class="variant">⚠ ${esc(m.variant)}</div>` : ''}
   <figcaption>${esc(m.author)} · <a href="${esc(m.licenseUrl)}" target="_blank" rel="noopener">${esc(m.license)}</a> · <a href="#" class="credlink">Credits</a></figcaption></figure>`;
 }
+function flip(box) {
+  const n = +box.dataset.n, i = (+box.dataset.i + 1) % n, labels = JSON.parse(box.dataset.labels);
+  box.dataset.i = i; box.querySelectorAll('img').forEach((im, k) => im.classList.toggle('on', k === i));
+  box.querySelector('.badge').textContent = `${i + 1}/${n} ⇄`;
+  box.setAttribute('aria-label', `Demonstration, ${labels[i]} (${i + 1} of ${n}). Press to show ${labels[(i + 1) % n]}.`);
+}
+document.addEventListener('click', e => { const b = e.target.closest('.mbox[data-n]'); if (b) { e.stopPropagation(); flip(b); } }, true);
+document.addEventListener('keydown', e => { const b = e.target.closest && e.target.closest('.mbox[data-n]'); if (b && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); e.stopPropagation(); flip(b); } }, true);
 function allMedia() {
   const seen = new Map();
   for (const ex of [...plan.warmup, ...Object.values(plan.days).flatMap(d => d.exercises)])
-    if (ex.media) { const r = seen.get(ex.media.file) || { ...ex.media, used: [] }; if (!r.used.includes(ex.name)) r.used.push(ex.name); seen.set(ex.media.file, r); }
+    if (ex.media) { const k = ex.media.frames[0].file, r = seen.get(k) || { ...ex.media, used: [] }; if (!r.used.includes(ex.name)) r.used.push(ex.name); seen.set(k, r); }
   return [...seen.values()];
 }
 function renderCredits() {
-  const ms = allMedia();
-  V.innerHTML = `<h2>Credits</h2><p class="muted">${esc(plan.credit || '')} Exercise media: ${ms.length} items, bundled for offline use. Public-domain and Unlicense items need no attribution; CC BY-SA items are credited here, and their resized derivatives are shared under the same license.</p>` +
-    ms.map(m => `<div class="credit" data-file="${esc(m.file)}"><img src="${esc(m.file)}" alt="" loading="lazy"><div><b>${esc(m.used.join(', '))}</b><br>
+  const ms = allMedia(), nf = ms.reduce((a, m) => a + m.frames.length, 0);
+  const short = u => esc(u.replace(/^https?:\/\//, '').slice(0, 60));
+  V.innerHTML = `<h2>Credits</h2><p class="muted">${esc(plan.credit || '')} Exercise media: ${ms.length} items (${nf} image files), bundled for offline use. Public-domain and Unlicense items need no attribution; CC BY-SA items are credited here, and their resized derivatives are shared under the same license.</p>` +
+    ms.map(m => `<div class="credit" data-file="${esc(m.frames[0].file)}"><img src="${esc(m.frames[0].file)}" alt="" loading="lazy"><div><b>${esc(m.used.join(', '))}</b><br>
     Author: ${esc(m.author)}<br>License: <a href="${esc(m.licenseUrl)}" target="_blank" rel="noopener">${esc(m.license)}</a><br>
-    Source: <a href="${esc(m.sourceUrl)}" target="_blank" rel="noopener">${esc(m.sourceUrl.replace(/^https?:\/\//, '').slice(0, 60))}</a><br>
-    Changes: ${esc(m.changes)}${m.variant ? '<br>Note: ' + esc(m.variant) : ''}</div></div>`).join('') +
+    ${m.frames.map((f, i) => `${m.frames.length > 1 ? 'Frame ' + (i + 1) + (f.label ? ' (' + esc(f.label) + ')' : '') + ' source' : 'Source'}: <a href="${esc(f.sourceUrl)}" target="_blank" rel="noopener">${short(f.sourceUrl)}</a><br>`).join('')}
+    Changes: ${esc(m.changes)}${m.frames.slice(1).map(f => f.changes ? ' ' + esc(f.changes) : '').join('')}${m.variant ? '<br>Note: ' + esc(m.variant) : ''}</div></div>`).join('') +
     `<p class="muted">App code and plan text: personal use. Icons generated for this app.</p>`;
 }
 function renderToday() {
