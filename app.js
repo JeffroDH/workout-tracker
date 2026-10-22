@@ -123,7 +123,28 @@ function exHtml(ex, dateIso, dayNum, interactive) {
   const r = rx(ex, weekOf(dateIso), ex.wu ? null : dayNum), on = (st.checks[dateIso] || {})[ex.id];
   return `<div class="ex ${on ? 'done' : ''}" data-id="${ex.id}">${interactive ? `<input type="checkbox" aria-label="Done: ${esc(ex.name)}" ${on ? 'checked' : ''}>` : ''}
   <div class="body"><div class="nm">${esc(ex.name)}</div><div class="rx"><b>${esc(r.text)}</b>${r.changed ? '<span class="chg">wk ' + weekOf(dateIso) + '</span>' : ''} · ${esc(ex.tempo)}</div>
-  <div class="note">${esc(ex.note)}${ex.harder ? '<br><i>Harder: ' + esc(ex.harder) + '</i>' : ''}</div></div></div>`;
+  <div class="note">${mediaHtml(ex.media)}${esc(ex.note)}${ex.harder ? '<br><i>Harder: ' + esc(ex.harder) + '</i>' : ''}</div></div></div>`;
+}
+function mediaHtml(m) {
+  if (!m) return '';
+  return `<figure class="media"><img src="${esc(m.file)}" alt="Demonstration" loading="lazy" decoding="async">
+  ${m.variant ? `<div class="variant">⚠ ${esc(m.variant)}</div>` : ''}
+  <figcaption>${esc(m.author)} · <a href="${esc(m.licenseUrl)}" target="_blank" rel="noopener">${esc(m.license)}</a> · <a href="#" class="credlink">Credits</a></figcaption></figure>`;
+}
+function allMedia() {
+  const seen = new Map();
+  for (const ex of [...plan.warmup, ...Object.values(plan.days).flatMap(d => d.exercises)])
+    if (ex.media) { const r = seen.get(ex.media.file) || { ...ex.media, used: [] }; if (!r.used.includes(ex.name)) r.used.push(ex.name); seen.set(ex.media.file, r); }
+  return [...seen.values()];
+}
+function renderCredits() {
+  const ms = allMedia();
+  V.innerHTML = `<h2>Credits</h2><p class="muted">${esc(plan.credit || '')} Exercise media: ${ms.length} items, bundled for offline use. Public-domain and Unlicense items need no attribution; CC BY-SA items are credited here, and their resized derivatives are shared under the same license.</p>` +
+    ms.map(m => `<div class="credit" data-file="${esc(m.file)}"><img src="${esc(m.file)}" alt="" loading="lazy"><div><b>${esc(m.used.join(', '))}</b><br>
+    Author: ${esc(m.author)}<br>License: <a href="${esc(m.licenseUrl)}" target="_blank" rel="noopener">${esc(m.license)}</a><br>
+    Source: <a href="${esc(m.sourceUrl)}" target="_blank" rel="noopener">${esc(m.sourceUrl.replace(/^https?:\/\//, '').slice(0, 60))}</a><br>
+    Changes: ${esc(m.changes)}${m.variant ? '<br>Note: ' + esc(m.variant) : ''}</div></div>`).join('') +
+    `<p class="muted">App code and plan text: personal use. Icons generated for this app.</p>`;
 }
 function renderToday() {
   const d = todayIso(), s = sessionFor(d);
@@ -171,7 +192,7 @@ function renderSettings() {
   <label for="notifTime">Daily reminder time</label><input type="time" id="notifTime" value="${settings.notifyTime || '07:00'}">
   <p class="muted">Notifications fire only while the app (or its browser) is running; there is no server push. Week-change and retest reminders appear when you open the app.</p>
   <label>Backup</label><div class="row"><button id="exportBtn">Export JSON</button><button id="importBtn">Import JSON</button><input type="file" id="importFile" accept="application/json" hidden></div>
-  <div class="row"><button id="printBtn">Print this week</button></div>`;
+  <div class="row"><button id="printBtn">Print this week</button><button id="creditsBtn">Credits</button></div>`;
   planSel.onchange = () => { settings.activePlan = planSel.value; save(K.settings, settings); boot(); };
   startDate.onchange = () => { if (startDate.value) { st.start = startDate.value; st.seenWeek = 0; saveState(); checkReminders(); header(); } };
   notifTime.onchange = () => { settings.notifyTime = notifTime.value; save(K.settings, settings); };
@@ -190,10 +211,13 @@ function renderSettings() {
       for (const [k, v] of Object.entries(j.data)) if (k.startsWith('wk:')) save(k, v); settings = load(K.settings, {}); boot(); alert('Imported.'); }
     catch { alert('Not a valid backup file.'); }
   };
+  creditsBtn.onclick = () => show('credits');
   printBtn.onclick = () => { show('week'); setTimeout(() => window.print(), 100); };
 }
 let cur = 'today';
-function render() { header(); ({ today: renderToday, week: renderWeek, history: renderHistory, settings: renderSettings })[cur](); }
+function render() { header(); ({ today: renderToday, week: renderWeek, history: renderHistory, settings: renderSettings, credits: renderCredits })[cur]();
+  V.querySelectorAll('.credlink').forEach(a => a.onclick = e => { e.preventDefault(); e.stopPropagation(); show('credits'); });
+  V.querySelectorAll('.note a').forEach(a => a.addEventListener('click', e => e.stopPropagation())); }
 function show(v) { cur = v; document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.v === v)); render(); window.scrollTo(0, 0); }
 
 /* ---------- boot ---------- */

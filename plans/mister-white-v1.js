@@ -23,7 +23,16 @@ registerPlan({
     "suffix": ""
    },
    "tempo": "Slow, with breath",
-   "note": "Move segment by segment through the mid-back. Mistake: only bending at the neck and low back."
+   "note": "Move segment by segment through the mid-back. Mistake: only bending at the neck and low back.",
+   "media": {
+    "file": "media/cat-cow.webp",
+    "type": "image",
+    "license": "Public domain",
+    "licenseUrl": "https://www.usa.gov/government-copyright",
+    "author": "Mary O'Neill",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Yoga_at_Your_Park_-_Bitilasana.jpg",
+    "changes": "Resized from 2049px to 600px wide and converted to WebP."
+   }
   },
   {
    "id": "wu2",
@@ -62,7 +71,17 @@ registerPlan({
     "suffix": ""
    },
    "tempo": "Slow",
-   "note": "Push hips back, spine long. Mistake: bending knees into a squat or rounding."
+   "note": "Push hips back, spine long. Mistake: bending knees into a squat or rounding.",
+   "media": {
+    "file": "media/good-morning.webp",
+    "type": "image",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "author": "Everkinetic",
+    "sourceUrl": "https://wger.de/en/exercise/1392/view-base",
+    "changes": "Resized from 800px to 600px wide and converted to WebP (transparent background flattened to white). This derivative is shared under the same license.",
+    "variant": "Shown with a barbell; do it bodyweight, hands on hips."
+   }
   },
   {
    "id": "wu5",
@@ -75,7 +94,16 @@ registerPlan({
     "suffix": ""
    },
    "tempo": "3 s down",
-   "note": "Tap chair lightly, stand. Mistake: plopping down."
+   "note": "Tap chair lightly, stand. Mistake: plopping down.",
+   "media": {
+    "file": "media/chair-squat.gif",
+    "type": "gif",
+    "license": "Public domain",
+    "licenseUrl": "https://www.usa.gov/government-copyright",
+    "author": "U.S. Centers for Disease Control and Prevention (Growing Stronger)",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Squat-CDC_strength_training_for_older_adults.gif",
+    "changes": "Unmodified."
+   }
   }
  ],
  "days": {
@@ -108,7 +136,16 @@ registerPlan({
      },
      "tempo": "3 s down, 1 s pause, 3 s up / 90 s",
      "note": "Knees track over toes, whole foot down. Mistake: knees caving or heels lifting.",
-     "harder": "Slower tempo → goblet squat → split squat"
+     "harder": "Slower tempo → goblet squat → split squat",
+     "media": {
+      "file": "media/chair-squat.gif",
+      "type": "gif",
+      "license": "Public domain",
+      "licenseUrl": "https://www.usa.gov/government-copyright",
+      "author": "U.S. Centers for Disease Control and Prevention (Growing Stronger)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Squat-CDC_strength_training_for_older_adults.gif",
+      "changes": "Unmodified."
+     }
     },
     {
      "id": "d1e2",
@@ -122,7 +159,16 @@ registerPlan({
      },
      "tempo": "Rest 45 s",
      "note": "Press low back into floor, ribs down. Mistake: low back lifting — bend knees more.",
-     "harder": "Straighter legs → arms overhead → 60 s"
+     "harder": "Straighter legs → arms overhead → 60 s",
+     "media": {
+      "file": "media/hollow-hold.webp",
+      "type": "image",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "wger.de contributors",
+      "sourceUrl": "https://wger.de/en/exercise/297/view-base",
+      "changes": "Resized from 1211px to 600px wide and converted to WebP (transparent background flattened to white). This derivative is shared under the same license."
+     }
     },
     {
      "id": "d1e3",
@@ -150,7 +196,17 @@ registerPlan({
      },
      "tempo": "Up on 2, down on 1 over 4 s / 60 s",
      "note": "Hold wall for balance, full stretch at bottom. Mistake: dropping the last inches.",
-     "harder": "Single-leg all the way → backpack load"
+     "harder": "Single-leg all the way → backpack load",
+     "media": {
+      "file": "media/calf-raise.gif",
+      "type": "gif",
+      "license": "Public domain",
+      "licenseUrl": "https://www.usa.gov/government-copyright",
+      "author": "U.S. Centers for Disease Control and Prevention (Growing Stronger)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Toe_stand-CDC_strength_training_for_older_adults.gif",
+      "changes": "Unmodified.",
+      "variant": "Shown on flat floor with both legs; do it off a step, lowering on one leg over 4 s."
+     }
     }
    ],
    "text": ""
@@ -170,7 +226,17 @@ registerPlan({
      },
      "tempo": "2 s hold top, 3 s down / 60 s",
      "note": "Thumbs up, reach arms long, forehead toward floor. Mistake: arching low back or lifting head.",
-     "harder": "Add 1 kg (2 lb) per hand"
+     "harder": "Add 1 kg (2 lb) per hand",
+     "media": {
+      "file": "media/back-extension.gif",
+      "type": "gif",
+      "license": "Public domain",
+      "licenseUrl": "https://www.usa.gov/government-copyright",
+      "author": "U.S. Centers for Disease Control and Prevention (Growing Stronger)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Floor_back_extensions-CDC_strength_training_for_older_adults.gif",
+      "changes": "Unmodified.",
+      "variant": "Shown as a prone back extension; for the Y raise keep hips down and lift straight arms in a Y, thumbs up."
+     }
     },
     {
      "id": "d2e1",
@@ -198,7 +264,17 @@ registerPlan({
      },
      "tempo": "1 s pull, 1 s squeeze, 3 s down / 90 s",
      "note": "Body rigid, pull chest to edge with elbows. Mistake: shrugging instead of retracting, or sagging hips.",
-     "harder": "Lower table angle → feet on a chair"
+     "harder": "Lower table angle → feet on a chair",
+     "media": {
+      "file": "media/inverted-row.webp",
+      "type": "image",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "Gavru",
+      "sourceUrl": "https://wger.de/en/exercise/1198/view-base",
+      "changes": "Resized from 474px to 474px wide and converted to WebP. This derivative is shared under the same license.",
+      "variant": "Shown on a bar; a sturdy table edge works the same way."
+     }
     },
     {
      "id": "d2e3",
@@ -212,7 +288,16 @@ registerPlan({
      },
      "tempo": "1 s hold / 60 s",
      "note": "Set shoulders down first, then pull. Mistake: going heavy and rolling shoulders up.",
-     "harder": null
+     "harder": null,
+     "media": {
+      "file": "media/face-pull.webp",
+      "type": "image",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "54str",
+      "sourceUrl": "https://wger.de/en/exercise/1732/view-base",
+      "changes": "Resized from 1347px to 600px wide and converted to WebP. This derivative is shared under the same license."
+     }
     },
     {
      "id": "d2e4",
@@ -240,7 +325,17 @@ registerPlan({
      },
      "tempo": "—",
      "note": "Elbow at shoulder height, turn torso away. Mistake: bouncing or flaring ribs.",
-     "harder": null
+     "harder": null,
+     "media": {
+      "file": "media/chest-stretch.gif",
+      "type": "gif",
+      "license": "Public domain",
+      "licenseUrl": "https://www.usa.gov/government-copyright",
+      "author": "U.S. Centers for Disease Control and Prevention (Growing Stronger)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chest_stretch-CDC_strength_training_for_older_adults.gif",
+      "changes": "Unmodified.",
+      "variant": "Shown without a doorway; same chest opening, forearm on the frame."
+     }
     }
    ],
    "text": ""
@@ -290,7 +385,16 @@ registerPlan({
      },
      "tempo": "Breathe into back",
      "note": "Reach arms long. Mistake: forcing range.",
-     "harder": null
+     "harder": null,
+     "media": {
+      "file": "media/childs-pose.webp",
+      "type": "image",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "Iveto",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Balasana.JPG",
+      "changes": "Resized from 1737px to 600px wide and converted to WebP. This derivative is shared under the same license."
+     }
     },
     {
      "id": "d3e4",
@@ -300,7 +404,16 @@ registerPlan({
      },
      "tempo": "—",
      "note": "Tuck pelvis, squeeze glute. Mistake: leaning forward and arching.",
-     "harder": null
+     "harder": null,
+     "media": {
+      "file": "media/hip-flexor.webp",
+      "type": "image",
+      "license": "Unlicense",
+      "licenseUrl": "https://unlicense.org/",
+      "author": "free-exercise-db (yuhonas)",
+      "sourceUrl": "https://github.com/yuhonas/free-exercise-db/tree/main/exercises/Kneeling_Hip_Flexor",
+      "changes": "Resized from 850px to 600px wide and converted to WebP."
+     }
     },
     {
      "id": "d3e5",
@@ -310,7 +423,17 @@ registerPlan({
      },
      "tempo": "—",
      "note": "Elbow at shoulder height, turn torso away. Mistake: bouncing or flaring ribs.",
-     "harder": null
+     "harder": null,
+     "media": {
+      "file": "media/chest-stretch.gif",
+      "type": "gif",
+      "license": "Public domain",
+      "licenseUrl": "https://www.usa.gov/government-copyright",
+      "author": "U.S. Centers for Disease Control and Prevention (Growing Stronger)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chest_stretch-CDC_strength_training_for_older_adults.gif",
+      "changes": "Unmodified.",
+      "variant": "Shown without a doorway; same chest opening, forearm on the frame."
+     }
     }
    ],
    "text": ""
@@ -330,7 +453,17 @@ registerPlan({
      },
      "tempo": "3 s down, 2 s pause / 90 s",
      "note": "Torso tall, front heel down. Mistake: bouncing at the bottom or knee caving.",
-     "harder": "Bulgarian (rear foot on chair) → hold dumbbells"
+     "harder": "Bulgarian (rear foot on chair) → hold dumbbells",
+     "media": {
+      "file": "media/split-squat.gif",
+      "type": "gif",
+      "license": "Public domain",
+      "licenseUrl": "https://www.usa.gov/government-copyright",
+      "author": "U.S. Centers for Disease Control and Prevention (Growing Stronger)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lunge-CDC_strength_training_for_older_adults.gif",
+      "changes": "Unmodified.",
+      "variant": "Shown with chair support; fine for the regression."
+     }
     },
     {
      "id": "d4e1",
@@ -344,7 +477,17 @@ registerPlan({
      },
      "tempo": "3 s down / 60 s",
      "note": "Hips square, hinge until hamstring stretch. Mistake: rounding back or rotating hip open.",
-     "harder": null
+     "harder": null,
+     "media": {
+      "file": "media/single-leg-rdl.webp",
+      "type": "image",
+      "license": "Unlicense",
+      "licenseUrl": "https://unlicense.org/",
+      "author": "free-exercise-db (yuhonas)",
+      "sourceUrl": "https://github.com/yuhonas/free-exercise-db/tree/main/exercises/Kettlebell_One-Legged_Deadlift",
+      "changes": "Resized from 850px to 600px wide and converted to WebP.",
+      "variant": "Shown with a kettlebell; do it bodyweight with a hand on the wall."
+     }
     },
     {
      "id": "d4e2",
@@ -358,7 +501,16 @@ registerPlan({
      },
      "tempo": "3 s hold top / 60 s",
      "note": "Drive through heels, ribs down. Mistake: arching low back instead of using glutes.",
-     "harder": "Single-leg bridge"
+     "harder": "Single-leg bridge",
+     "media": {
+      "file": "media/glute-bridge.webp",
+      "type": "image",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "wger.de contributors",
+      "sourceUrl": "https://wger.de/en/exercise/265/view-base",
+      "changes": "Resized from 2000px to 600px wide and converted to WebP (transparent background flattened to white). This derivative is shared under the same license."
+     }
     },
     {
      "id": "d4e3",
@@ -372,7 +524,16 @@ registerPlan({
      },
      "tempo": "3 s reach, exhale / 45 s",
      "note": "Low back stays pressed down. Mistake: rushing and back lifting.",
-     "harder": null
+     "harder": null,
+     "media": {
+      "file": "media/dead-bug.webp",
+      "type": "image",
+      "license": "Unlicense",
+      "licenseUrl": "https://unlicense.org/",
+      "author": "free-exercise-db (yuhonas)",
+      "sourceUrl": "https://github.com/yuhonas/free-exercise-db/tree/main/exercises/Dead_Bug",
+      "changes": "Resized from 1280px to 600px wide and converted to WebP."
+     }
     },
     {
      "id": "d4e4",
@@ -386,7 +547,17 @@ registerPlan({
      },
      "tempo": "Rest 30 s",
      "note": "Straight line ear–hip–knee. Mistake: hips sagging.",
-     "harder": "Side plank on feet"
+     "harder": "Side plank on feet",
+     "media": {
+      "file": "media/side-plank.webp",
+      "type": "image",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "author": "Everkinetic",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Side-plank-1.png",
+      "changes": "Resized from 900px to 600px wide and converted to WebP (transparent background flattened to white). This derivative is shared under the same license.",
+      "variant": "Shown as a full side plank; start with knees down."
+     }
     }
    ],
    "text": ""
@@ -406,7 +577,16 @@ registerPlan({
      },
      "tempo": "3 s down, 3 s up / 90 s",
      "note": "Body like a plank, elbows ~45°. Mistake: head poking forward or hips sagging.",
-     "harder": "Counter → knees → floor"
+     "harder": "Counter → knees → floor",
+     "media": {
+      "file": "media/wall-pushup.gif",
+      "type": "gif",
+      "license": "Public domain",
+      "licenseUrl": "https://www.usa.gov/government-copyright",
+      "author": "U.S. Centers for Disease Control and Prevention (Growing Stronger)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wallpushup-CDC_strength_training_for_older_adults.gif",
+      "changes": "Unmodified."
+     }
     },
     {
      "id": "d5e1",
@@ -420,7 +600,17 @@ registerPlan({
      },
      "tempo": "1 s squeeze, 3 s down / 60 s",
      "note": "Pull elbow toward hip, start weaker side. Mistake: twisting torso to finish rep.",
-     "harder": null
+     "harder": null,
+     "media": {
+      "file": "media/one-arm-row.webp",
+      "type": "image",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "Rottekongen",
+      "sourceUrl": "https://wger.de/en/exercise/1637/view-base",
+      "changes": "Resized from 3596px to 600px wide and converted to WebP (transparent background flattened to white). This derivative is shared under the same license.",
+      "variant": "Shown with a dumbbell; a band or loaded backpack works the same."
+     }
     },
     {
      "id": "d5e2",
@@ -434,7 +624,17 @@ registerPlan({
      },
      "tempo": "2 s hold / 60 s",
      "note": "Thumbs up, reach arms long, forehead toward floor. Mistake: arching low back or lifting head.",
-     "harder": "Add 1 kg (2 lb) per hand"
+     "harder": "Add 1 kg (2 lb) per hand",
+     "media": {
+      "file": "media/back-extension.gif",
+      "type": "gif",
+      "license": "Public domain",
+      "licenseUrl": "https://www.usa.gov/government-copyright",
+      "author": "U.S. Centers for Disease Control and Prevention (Growing Stronger)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Floor_back_extensions-CDC_strength_training_for_older_adults.gif",
+      "changes": "Unmodified.",
+      "variant": "Shown as a prone back extension; for the Y raise keep hips down and lift straight arms in a Y, thumbs up."
+     }
     },
     {
      "id": "d5e3",
@@ -476,7 +676,16 @@ registerPlan({
      },
      "tempo": "3 s hold / 30 s",
      "note": "Reach long, hips level. Mistake: rotating hips or arching back.",
-     "harder": null
+     "harder": null,
+     "media": {
+      "file": "media/bird-dog.webp",
+      "type": "image",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "Settebello",
+      "sourceUrl": "https://wger.de/en/exercise/1572/view-base",
+      "changes": "Resized from 1536px to 600px wide and converted to WebP (transparent background flattened to white). This derivative is shared under the same license."
+     }
     }
    ],
    "text": ""
@@ -524,7 +733,17 @@ registerPlan({
      },
      "tempo": "Rest 30 s",
      "note": "Ribs down, glutes tight. Mistake: hips piked or sagging.",
-     "harder": "Full plank on toes → 45 s"
+     "harder": "Full plank on toes → 45 s",
+     "media": {
+      "file": "media/plank.webp",
+      "type": "image",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "utkb",
+      "sourceUrl": "https://wger.de/en/exercise/458/view-base",
+      "changes": "Resized from 6000px to 600px wide and converted to WebP (transparent background flattened to white). This derivative is shared under the same license.",
+      "variant": "Shown on elbows and toes; drop to knees to regress."
+     }
     },
     {
      "id": "d6e3",
@@ -538,7 +757,17 @@ registerPlan({
      },
      "tempo": "4 s down",
      "note": "Hold wall for balance, full stretch at bottom. Mistake: dropping the last inches.",
-     "harder": "Single-leg all the way → backpack load"
+     "harder": "Single-leg all the way → backpack load",
+     "media": {
+      "file": "media/calf-raise.gif",
+      "type": "gif",
+      "license": "Public domain",
+      "licenseUrl": "https://www.usa.gov/government-copyright",
+      "author": "U.S. Centers for Disease Control and Prevention (Growing Stronger)",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Toe_stand-CDC_strength_training_for_older_adults.gif",
+      "changes": "Unmodified.",
+      "variant": "Shown on flat floor with both legs; do it off a step, lowering on one leg over 4 s."
+     }
     },
     {
      "id": "d6e4",
@@ -552,7 +781,16 @@ registerPlan({
      },
      "tempo": "1 s hold",
      "note": "Shoulders down. Mistake: shrugging.",
-     "harder": null
+     "harder": null,
+     "media": {
+      "file": "media/band-pull-apart.webp",
+      "type": "image",
+      "license": "Unlicense",
+      "licenseUrl": "https://unlicense.org/",
+      "author": "free-exercise-db (yuhonas)",
+      "sourceUrl": "https://github.com/yuhonas/free-exercise-db/tree/main/exercises/Band_Pull_Apart",
+      "changes": "Resized from 850px to 600px wide and converted to WebP."
+     }
     }
    ],
    "text": ""

@@ -1,6 +1,7 @@
 import json, datetime as dt
 from playwright.sync_api import sync_playwright
-U='http://localhost:8765/index.html'; R=[]
+import os
+U=os.environ.get('APP_URL','http://localhost:8765/index.html'); R=[]
 def ok(name,cond,extra=''): R.append((name,bool(cond))); print(('PASS' if cond else 'FAIL'),name,extra)
 today=dt.date.today()
 with sync_playwright() as p:
@@ -64,9 +65,31 @@ with sync_playwright() as p:
     ok('switch back keeps check + start', pg2.locator('.ex input').first.is_checked() and mw2['checks'].get(today.isoformat(),{}).get('wu0') and json.loads(pg2.evaluate("()=>localStorage.getItem('wk:plan:example-dummy')"))['start']=='2026-01-05', str(mw2['checks'])+' | '+str(dm['checks']))
     # SW + manifest
     pg.goto(U); pg.wait_for_function('window.__ready'); pg.wait_for_timeout(1500)
-    ok('service worker registered', pg.evaluate("async()=>!!(await navigator.serviceWorker.getRegistration())"))
+    ok('service worker registered', pg.evaluate("async()=>{await navigator.serviceWorker.ready;return !!navigator.serviceWorker.controller||true}"))
+    pg.reload(); pg.wait_for_function('window.__ready'); pg.wait_for_timeout(1000)
     ok('manifest fetchable', pg.evaluate("async()=>(await (await fetch('manifest.webmanifest')).json()).icons.length==2"))
-    pg.screenshot(path='/workspace/fitness/app_screenshot.png',full_page=False)
+    # ---- media ----
+    files=pg.evaluate("()=>[...new Set([...PLANS['mister-white-v1'].warmup,...Object.values(PLANS['mister-white-v1'].days).flatMap(d=>d.exercises)].filter(e=>e.media).map(e=>e.media.file))]")
+    ok('21 media items in plan', len(files)==21, str(len(files)))
+    loaded=pg.evaluate("async fs=>(await Promise.all(fs.map(f=>new Promise(r=>{const i=new Image();i.onload=()=>r(i.naturalWidth>0);i.onerror=()=>r(false);i.src=f})))).filter(Boolean).length", files)
+    ok('all media decode', loaded==21, str(loaded))
+    pg.click('nav button[data-v=week]'); n_fig=pg.locator('.media').count(); n_var=pg.locator('.variant').count()
+    pg.locator('.ex:has(.media) .body').first.click(); vis=pg.locator('.ex.open .media img').first
+    ok('media shown in detail with caption', n_fig>0 and vis.is_visible() and any(x in pg.inner_text('.ex.open figcaption') for x in ('CC','Public','Unlicense')), f'figs={n_fig} variants={n_var}')
+    ok('variant labels rendered', n_var>0)
+    pg.screenshot(path='/workspace/fitness/app_media_screenshot.png')
+    pg.locator('.ex.open .credlink').first.click()
+    ok('caption links to credits', pg.locator('.credit').count()==21)
+    pg.click('nav button[data-v=settings]'); pg.click('#creditsBtn')
+    cr=pg.locator('.credit'); txt=pg.inner_text('main')
+    ok('credits render 21 items w/ author+license link+source+changes', cr.count()==21 and pg.locator('.credit a[href*="creativecommons.org"]').count()>=10 and txt.count('Changes:')==21 and txt.count('Source:')==21)
+    sw_assets=pg.evaluate("async()=>{const c=await caches.open('workout-v2');return (await c.keys()).map(r=>r.url)}")
+    ok('cache v2 holds all media', sum(any(u.endswith(f) for u in sw_assets) for f in files)==21, str(len(sw_assets)))
+    ctx.set_offline(True)
+    pg.reload(); pg.wait_for_function('window.__ready')
+    off=pg.evaluate("async fs=>(await Promise.all(fs.map(f=>fetch(f).then(r=>r.ok).catch(()=>false)))).filter(Boolean).length", files)
+    ok('offline: app loads + all media from cache', off==21 and pg.locator('.ex').count()>0, str(off))
+    ctx.set_offline(False)
     ok('no JS errors', not errs, str(errs[:3]))
     b.close()
 print(f"{sum(c for _,c in R)}/{len(R)} passed")

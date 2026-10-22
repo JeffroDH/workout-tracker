@@ -22,3 +22,7 @@ label{display:block;margin:12px 0 4px;font:600 .9rem system-ui}input[type=date],
 .row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.muted{color:#666;font-size:.85rem;font-family:system-ui}
 dialog{max-width:520px;width:92%;border:0;border-radius:12px;padding:18px}dialog::backdrop{background:#0006}
 @media print{nav,#banner,input[type=checkbox],button{display:none!important}header{background:none;color:#000}.ex .note{display:block}body{padding:0;font-size:11pt}}
+.media{margin:0 0 8px}.media img{display:block;max-width:100%;max-height:300px;margin:0 auto;background:#fff}
+.media figcaption{font:.75rem system-ui;color:#555;margin-top:4px}.variant{font:.85rem system-ui;background:#fff4d6;padding:4px 6px;margin-top:4px;border-radius:4px}
+.credit{display:flex;gap:10px;border-bottom:1px solid var(--line);padding:10px 0;font:.85rem/1.4 system-ui}.credit img{width:84px;height:84px;object-fit:contain;flex:none;background:#fff}
+a{color:var(--c)}
