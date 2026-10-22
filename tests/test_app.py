@@ -1,0 +1,72 @@
+import json, datetime as dt
+from playwright.sync_api import sync_playwright
+U='http://localhost:8765/index.html'; R=[]
+def ok(name,cond,extra=''): R.append((name,bool(cond))); print(('PASS' if cond else 'FAIL'),name,extra)
+today=dt.date.today()
+with sync_playwright() as p:
+    b=p.chromium.launch(executable_path='/usr/bin/google-chrome',args=['--no-sandbox'])
+    ctx=b.new_context(viewport={'width':390,'height':844}); pg=ctx.new_page()
+    errs=[]; pg.on('pageerror',lambda e: errs.append(str(e))); pg.on('console',lambda m: m.type=='error' and errs.append(m.text))
+    pg.goto(U); pg.wait_for_function('window.__ready')
+    ok('loads, plan title', 'Mister White' in pg.inner_text('#planName'))
+    ok('today heading matches weekday', today.strftime('%A') in pg.inner_text('main h2'))
+    n=pg.locator('.ex input').count(); ok('checkboxes rendered', n>0, f'({n})')
+    pg.locator('.ex input').first.check(); pg.reload(); pg.wait_for_function('window.__ready')
+    ok('check persists after reload', pg.locator('.ex input').first.is_checked())
+    pg.click('#markAll'); pg.reload(); pg.wait_for_function('window.__ready')
+    ok('session complete persists', pg.locator('#doneMsg').count()==1 or n==0)
+    # fake start date -> week 3
+    start=(today-dt.timedelta(days=14)).isoformat()
+    pg.evaluate(f"""()=>{{const k='wk:plan:mister-white-v1';const s=JSON.parse(localStorage.getItem(k));s.start='{start}';s.seenWeek=2;localStorage.setItem(k,JSON.stringify(s))}}""")
+    pg.reload(); pg.wait_for_function('window.__ready')
+    ok('week computation = 3', 'Week 3 of 6' in pg.inner_text('#weekInfo'), pg.inner_text('#weekInfo'))
+    ok('progression modal on new week', pg.locator('#modal[open]').count()==1 and 'Week 3' in pg.inner_text('#modalBody'), pg.inner_text('#modalBody')[:160].replace('\n',' '))
+    ok('modal lists hold +5 changes', '→' in pg.inner_text('#modalBody'))
+    pg.click('#modalClose'); pg.reload(); pg.wait_for_function('window.__ready')
+    ok('modal not repeated same week', pg.locator('#modal[open]').count()==0)
+    # prescription check: Monday towel pull 4x30 -> week3 4x35, week6 4x40
+    w=pg.evaluate("()=>[rx(PLANS['mister-white-v1'].days['1'].exercises[0],3,1).text,rx(PLANS['mister-white-v1'].days['1'].exercises[1],4,1).text,rx(PLANS['mister-white-v1'].days['1'].exercises[1],6,1).text,rx(PLANS['mister-white-v1'].days['3'].exercises[0],6,3).text]")
+    ok('prescriptions by week', w==['4 x 35 s','3 x 10','4 x 10','10–15 min'], str(w))
+    # retest at week 5
+    start=(today-dt.timedelta(days=28)).isoformat()
+    pg.evaluate(f"""()=>{{const k='wk:plan:mister-white-v1';const s=JSON.parse(localStorage.getItem(k));s.start='{start}';localStorage.setItem(k,JSON.stringify(s))}}""")
+    pg.reload(); pg.wait_for_function('window.__ready')
+    ok('week 5 + retest banner', 'Week 5' in pg.inner_text('#weekInfo') and 'Retest due' in pg.inner_text('#banner'))
+    # harder prompt: mark 3 previous same-weekday sessions
+    pg.evaluate("""()=>{const k='wk:plan:mister-white-v1';const s=JSON.parse(localStorage.getItem(k));const t=new Date();const ex=PLANS['mister-white-v1'].days[String(t.getDay())].exercises;
+      for(let i=1;i<=3;i++){const d=new Date(t);d.setDate(t.getDate()-7*i);s.checks[iso(d)]=Object.fromEntries(ex.map(e=>[e.id,true]))}localStorage.setItem(k,JSON.stringify(s))}""")
+    pg.reload(); pg.wait_for_function('window.__ready')
+    has=pg.evaluate("()=>PLANS['mister-white-v1'].days[String(new Date().getDay())].exercises.some(e=>e.harder)")
+    ok('harder-version prompt after 3 sessions', (not has) or 'sessions in a row' in pg.inner_text('#banner'), '(today has no progressable ex)' if not has else '')
+    before=pg.evaluate("()=>localStorage.getItem('wk:plan:mister-white-v1')")
+    # export
+    pg.click('nav button[data-v=settings]')
+    with pg.expect_download() as dl: pg.click('#exportBtn')
+    data=json.load(open(dl.value.path())); ok('export JSON contains plan data', 'wk:plan:mister-white-v1' in data['data'])
+    # import roundtrip
+    pg.evaluate("()=>localStorage.removeItem('wk:plan:mister-white-v1')")
+    pg.once('dialog',lambda d:d.accept())
+    pg.set_input_files('#importFile', dl.value.path()); pg.wait_for_timeout(500)
+    ok('import restores data', pg.evaluate("()=>localStorage.getItem('wk:plan:mister-white-v1')")==before)
+    # dummy plan: serve index with example enabled
+    ctx2=b.new_context(); pg2=ctx2.new_page()
+    pg2.route('**/plans/index.js', lambda r: r.fulfill(content_type='application/javascript', body='const PLAN_FILES=["plans/mister-white-v1.js","plans/example-dummy.js"];'))
+    pg2.goto(U); pg2.wait_for_function('window.__ready')
+    pg2.locator('.ex input').first.check(); mw=pg2.evaluate("()=>localStorage.getItem('wk:plan:mister-white-v1')")
+    pg2.click('nav button[data-v=settings]'); pg2.select_option('#planSel','example-dummy'); pg2.wait_for_function("document.querySelector('#planName').textContent.includes('EXAMPLE')")
+    ok('dummy plan selected', 'EXAMPLE' in pg2.inner_text('#planName'))
+    pg2.fill('#startDate','2026-01-05'); pg2.dispatch_event('#startDate','change')
+    ok('dummy program-complete modal', pg2.locator('#modal[open]').count()==1); pg2.click('#modalClose')
+    pg2.click('nav button[data-v=today]'); pg2.locator('.ex input').first.check()
+    ok('first plan data untouched', pg2.evaluate("()=>localStorage.getItem('wk:plan:mister-white-v1')")==mw)
+    pg2.click('nav button[data-v=settings]'); pg2.select_option('#planSel','mister-white-v1'); pg2.wait_for_function("document.querySelector('#planName').textContent.includes('Mister')"); pg2.click('nav button[data-v=today]')
+    mw2=json.loads(pg2.evaluate("()=>localStorage.getItem('wk:plan:mister-white-v1')")); dm=json.loads(pg2.evaluate("()=>localStorage.getItem('wk:plan:example-dummy')"))
+    ok('switch back keeps check + start', pg2.locator('.ex input').first.is_checked() and mw2['checks'].get(today.isoformat(),{}).get('wu0') and json.loads(pg2.evaluate("()=>localStorage.getItem('wk:plan:example-dummy')"))['start']=='2026-01-05', str(mw2['checks'])+' | '+str(dm['checks']))
+    # SW + manifest
+    pg.goto(U); pg.wait_for_function('window.__ready'); pg.wait_for_timeout(1500)
+    ok('service worker registered', pg.evaluate("async()=>!!(await navigator.serviceWorker.getRegistration())"))
+    ok('manifest fetchable', pg.evaluate("async()=>(await (await fetch('manifest.webmanifest')).json()).icons.length==2"))
+    pg.screenshot(path='/workspace/fitness/app_screenshot.png',full_page=False)
+    ok('no JS errors', not errs, str(errs[:3]))
+    b.close()
+print(f"{sum(c for _,c in R)}/{len(R)} passed")
