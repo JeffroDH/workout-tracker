@@ -109,8 +109,8 @@ with sync_playwright() as p:
     pg.click('nav button[data-v=settings]'); pg.click('#creditsBtn')
     cr=pg.locator('.credit'); txt=pg.inner_text('main')
     ok('credits render 21 items w/ author+license link+source+changes', cr.count()==29 and pg.locator('.credit a[href*="creativecommons.org"]').count()>=10 and txt.count('Changes:')==29 and txt.count('Source:')+txt.count(' source:')==41)
-    sw_assets=pg.evaluate("async()=>{const c=await caches.open('workout-v4');return (await c.keys()).map(r=>r.url)}")
-    ok('cache v4 holds all media', sum(any(u.endswith(f) for u in sw_assets) for f in files)==41, str(len(sw_assets)))
+    sw_assets=pg.evaluate("async()=>{const c=await caches.open('workout-v5');return (await c.keys()).map(r=>r.url)}")
+    ok('cache v5 holds all media', sum(any(u.endswith(f) for u in sw_assets) for f in files)==41, str(len(sw_assets)))
     ok('credits: 8 original line drawings, owner + hand-edits noted', txt.count('Original line drawing, generated for this app (owned by Jeffery Hogan)')==8 and txt.count('hand-edited')==2)
     P="PLANS['mister-white-v1']"; ALL=f"[...{P}.warmup,...Object.values({P}.days).flatMap(d=>d.exercises)]"
     ld=pg.evaluate(f"()=>{ALL}.filter(e=>e.media&&e.media.license.startsWith('Original')).map(e=>[e.id,e.media.frames.length])")
@@ -121,6 +121,19 @@ with sync_playwright() as p:
     for f,w,h in dims: g[f.split('/ld-')[1].split('.')[0].rstrip('0123456789').rstrip('-')].add((w,h))
     ok('each line-drawing group shares one frame size', len(dims)==13 and all(len(v)==1 for v in g.values()), str(dict(g)))
     ok('open book has no media', pg.evaluate(f"()=>!{ALL}.find(e=>e.id=='d3e2').media"))
+    # ---- equipment ----
+    pg.click('nav button[data-v=week]')
+    rows=pg.evaluate("()=>[...document.querySelectorAll('main h3')].map(h=>[h.textContent,[...h.nextElementSibling.querySelectorAll('.chip')].map(c=>c.textContent)])")
+    print('EQUIP',rows)
+    ok('week: equip row on all 7 days', len(rows)==7 and all(r[1] for r in rows))
+    rest=[r for r in rows if 'Rest' in r[0]]; trn=[r for r in rows if 'Rest' not in r[0]]
+    ok('rest day shows Nothing needed', len(rest)==1 and rest[0][1]==['Nothing needed'])
+    ok('training days deduplicated + include warm-up items', all(len(r[1])==len(set(r[1])) and 'wall' in r[1] and 'chair' in r[1] for r in trn))
+    d1=[r for r in rows if 'Legs + Core (tendon' in r[0]][0][1]; d4=[r for r in rows if 'slow tempo' in r[0]][0][1]
+    ok('day items accurate (towel, step on day 1)', 'towel' in d1 and 'step' in d1 and 'pull-up bar' not in ' '.join(d1))
+    ok('optional only when not required elsewhere', 'chair' in d4 and 'chair (optional)' not in d4 and 'dumbbells (optional)' in d4 and pg.locator('.chip.opt').count()>0)
+    pg.emulate_media(media='print'); ok('equip shown in print view', pg.locator('.equip').first.is_visible()); pg.emulate_media(media='screen')
+    pg.click('nav button[data-v=today]'); ok('today shows equip row', pg.locator('main .equip').count()==1 and "You'll need" in pg.inner_text('main .equip'))
     ctx.set_offline(True)
     pg.reload(); pg.wait_for_function('window.__ready')
     off=pg.evaluate("async fs=>(await Promise.all(fs.map(f=>fetch(f).then(r=>r.ok).catch(()=>false)))).filter(Boolean).length", files)

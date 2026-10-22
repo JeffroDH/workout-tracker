@@ -59,6 +59,10 @@ registerPlan({
 
 `plans/mister-white-v1.js` was generated from `../mister_white_plan_v2.md`. `plans/example-dummy.js` is an example only and is commented out of the index.
 
+### Equipment
+
+Each exercise may carry an optional `equipment` array of short strings, e.g. `["towel","sturdy post"]`. Append ` (optional)` to items that aren't required, e.g. `"dumbbells (optional)"`. Today and Week (and the printed week) show a **You'll need:** chip row per day, deduplicated across the warm-up plus that day's exercises; an item required anywhere that day is shown as required. Rest days (no exercises) show *Nothing needed*.
+
 ## Notification limitations
 The daily reminder and week notifications use the Notification API through the service worker. They fire only while the app, or the browser holding it, is running. There's no push server, so a closed app won't notify you. iOS supports notifications only for an app installed to the Home Screen (iOS 16.4+) and still requires the app to be running. Week and retest reminders always appear in the app when you open it.
 

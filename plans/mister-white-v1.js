@@ -47,7 +47,10 @@ registerPlan({
     ],
     "width": 600,
     "height": 397
-   }
+   },
+   "equipment": [
+    "mat"
+   ]
   },
   {
    "id": "wu2",
@@ -80,7 +83,10 @@ registerPlan({
     ],
     "width": 600,
     "height": 450
-   }
+   },
+   "equipment": [
+    "wall"
+   ]
   },
   {
    "id": "wu3",
@@ -113,7 +119,10 @@ registerPlan({
     ],
     "width": 600,
     "height": 450
-   }
+   },
+   "equipment": [
+    "wall"
+   ]
   },
   {
    "id": "wu4",
@@ -181,7 +190,10 @@ registerPlan({
     ],
     "width": 220,
     "height": 275
-   }
+   },
+   "equipment": [
+    "chair"
+   ]
   }
  ],
  "days": {
@@ -216,7 +228,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 450
-     }
+     },
+     "equipment": [
+      "towel"
+     ]
     },
     {
      "id": "d1e1",
@@ -247,7 +262,10 @@ registerPlan({
       ],
       "width": 220,
       "height": 275
-     }
+     },
+     "equipment": [
+      "chair"
+     ]
     },
     {
      "id": "d1e2",
@@ -278,7 +296,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 436
-     }
+     },
+     "equipment": [
+      "mat"
+     ]
     },
     {
      "id": "d1e3",
@@ -308,7 +329,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 450
-     }
+     },
+     "equipment": [
+      "wall"
+     ]
     },
     {
      "id": "d1e4",
@@ -340,7 +364,11 @@ registerPlan({
       ],
       "width": 160,
       "height": 275
-     }
+     },
+     "equipment": [
+      "step",
+      "wall"
+     ]
     }
    ],
    "text": ""
@@ -378,7 +406,11 @@ registerPlan({
       ],
       "width": 340,
       "height": 112
-     }
+     },
+     "equipment": [
+      "mat",
+      "dumbbells (optional)"
+     ]
     },
     {
      "id": "d2e1",
@@ -416,7 +448,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 600
-     }
+     },
+     "equipment": [
+      "mat"
+     ]
     },
     {
      "id": "d2e2",
@@ -448,7 +483,11 @@ registerPlan({
       ],
       "width": 474,
       "height": 302
-     }
+     },
+     "equipment": [
+      "sturdy table",
+      "resistance band (optional)"
+     ]
     },
     {
      "id": "d2e3",
@@ -479,7 +518,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 343
-     }
+     },
+     "equipment": [
+      "resistance band"
+     ]
     },
     {
      "id": "d2e4",
@@ -509,7 +551,11 @@ registerPlan({
       ],
       "width": 600,
       "height": 450
-     }
+     },
+     "equipment": [
+      "towel",
+      "sturdy post"
+     ]
     },
     {
      "id": "d2e5",
@@ -541,7 +587,10 @@ registerPlan({
       ],
       "width": 200,
       "height": 275
-     }
+     },
+     "equipment": [
+      "doorway"
+     ]
     }
    ],
    "text": ""
@@ -587,7 +636,11 @@ registerPlan({
       ],
       "width": 600,
       "height": 338
-     }
+     },
+     "equipment": [
+      "rolled towel",
+      "mat"
+     ]
     },
     {
      "id": "d3e2",
@@ -601,7 +654,10 @@ registerPlan({
      },
      "tempo": "Exhale as you rotate",
      "note": "Knees stacked, follow hand with eyes. Mistake: knees lifting apart.",
-     "harder": null
+     "harder": null,
+     "equipment": [
+      "mat"
+     ]
     },
     {
      "id": "d3e3",
@@ -628,7 +684,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 301
-     }
+     },
+     "equipment": [
+      "mat"
+     ]
     },
     {
      "id": "d3e4",
@@ -662,7 +721,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 400
-     }
+     },
+     "equipment": [
+      "mat"
+     ]
     },
     {
      "id": "d3e5",
@@ -690,7 +752,10 @@ registerPlan({
       ],
       "width": 200,
       "height": 275
-     }
+     },
+     "equipment": [
+      "doorway"
+     ]
     }
    ],
    "text": ""
@@ -728,7 +793,11 @@ registerPlan({
       ],
       "width": 200,
       "height": 292
-     }
+     },
+     "equipment": [
+      "chair (optional)",
+      "dumbbells (optional)"
+     ]
     },
     {
      "id": "d4e1",
@@ -767,7 +836,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 402
-     }
+     },
+     "equipment": [
+      "wall"
+     ]
     },
     {
      "id": "d4e2",
@@ -798,7 +870,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 224
-     }
+     },
+     "equipment": [
+      "mat"
+     ]
     },
     {
      "id": "d4e3",
@@ -836,7 +911,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 338
-     }
+     },
+     "equipment": [
+      "mat"
+     ]
     },
     {
      "id": "d4e4",
@@ -875,7 +953,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 277
-     }
+     },
+     "equipment": [
+      "mat"
+     ]
     }
    ],
    "text": ""
@@ -912,7 +993,10 @@ registerPlan({
       ],
       "width": 290,
       "height": 250
-     }
+     },
+     "equipment": [
+      "wall or counter"
+     ]
     },
     {
      "id": "d5e1",
@@ -944,7 +1028,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 322
-     }
+     },
+     "equipment": [
+      "resistance band or backpack"
+     ]
     },
     {
      "id": "d5e2",
@@ -976,7 +1063,11 @@ registerPlan({
       ],
       "width": 340,
       "height": 112
-     }
+     },
+     "equipment": [
+      "mat",
+      "dumbbells (optional)"
+     ]
     },
     {
      "id": "d5e3",
@@ -1010,7 +1101,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 450
-     }
+     },
+     "equipment": [
+      "wall"
+     ]
     },
     {
      "id": "d5e4",
@@ -1040,7 +1134,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 800
-     }
+     },
+     "equipment": [
+      "pull-up bar (or towel + sturdy post)"
+     ]
     },
     {
      "id": "d5e5",
@@ -1071,7 +1168,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 400
-     }
+     },
+     "equipment": [
+      "mat"
+     ]
     }
    ],
    "text": ""
@@ -1107,7 +1207,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 450
-     }
+     },
+     "equipment": [
+      "towel"
+     ]
     },
     {
      "id": "d6e1",
@@ -1137,7 +1240,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 450
-     }
+     },
+     "equipment": [
+      "wall"
+     ]
     },
     {
      "id": "d6e2",
@@ -1169,7 +1275,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 219
-     }
+     },
+     "equipment": [
+      "mat"
+     ]
     },
     {
      "id": "d6e3",
@@ -1201,7 +1310,11 @@ registerPlan({
       ],
       "width": 160,
       "height": 275
-     }
+     },
+     "equipment": [
+      "step",
+      "wall"
+     ]
     },
     {
      "id": "d6e4",
@@ -1239,7 +1352,10 @@ registerPlan({
       ],
       "width": 600,
       "height": 400
-     }
+     },
+     "equipment": [
+      "resistance band"
+     ]
     }
    ],
    "text": ""

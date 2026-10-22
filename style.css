@@ -33,3 +33,6 @@ a{color:var(--c)}
 .badge{position:absolute;right:6px;bottom:6px;font:600 .72rem system-ui;color:#fff;background:#0009;padding:2px 7px;border-radius:10px;pointer-events:none}
 @media (prefers-reduced-motion:reduce){.mbox img{transition:none}}
 @media print{.badge{display:none}}
+
+.equip{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin:4px 0 8px;font-size:.85em}.eqlab{font-weight:600;margin-right:2px}.chip{border:1px solid #9aa;border-radius:12px;padding:1px 8px;background:#f3f6f6}.chip.opt{border-style:dashed;color:#555}
+@media print{.equip{display:flex}.chip{background:none}}

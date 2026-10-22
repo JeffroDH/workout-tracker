@@ -161,9 +161,22 @@ function renderCredits() {
     Changes: ${esc(m.changes)}${m.frames.slice(1).map(f => f.changes ? ' ' + esc(f.changes) : '').join('')}${m.variant ? '<br>Note: ' + esc(m.variant) : ''}</div></div>`).join('') +
     `<p class="muted">App code and plan text: personal use. Icons generated for this app.</p>`;
 }
+function equipFor(day) {
+  const ex = day.exercises || []; if (!ex.length) return [];
+  const m = new Map();
+  for (const e of [...plan.warmup, ...ex]) for (const it of e.equipment || []) {
+    const base = it.replace(/\s*\(optional\)$/i, ''), opt = base !== it;
+    if (!m.has(base) || !opt) m.set(base, m.has(base) ? m.get(base) && opt : opt);
+  }
+  return [...m].map(([k, o]) => o ? k + ' (optional)' : k);
+}
+function equipHtml(day) {
+  const l = equipFor(day);
+  return `<div class="equip"><span class="eqlab">You'll need:</span> ${l.length ? l.map(x => `<span class="chip${/\(optional\)$/.test(x) ? ' opt' : ''}">${esc(x)}</span>`).join('') : '<span class="chip none">Nothing needed</span>'}</div>`;
+}
 function renderToday() {
   const d = todayIso(), s = sessionFor(d);
-  let h = `<h2>${DAYN[s.n]} — ${esc(s.day.label)}</h2><p class="muted">Tap an exercise for cues & common mistakes.</p>`;
+  let h = `<h2>${DAYN[s.n]} — ${esc(s.day.label)}</h2><p class="muted">Tap an exercise for cues & common mistakes.</p>` + equipHtml(s.day);
   if (weekOf(d) < 1) h += `<p class="muted">Program starts ${st.start}; showing week 1 prescriptions.</p>`;
   if (!s.items.length) h += `<p>${esc(s.day.text || 'Rest day.')}</p>`;
   else {
@@ -185,7 +198,7 @@ function renderWeek() {
   let h = `<h2>This week</h2>`;
   for (let i = 0; i < 7; i++) {
     const d = new Date(mon); d.setDate(mon.getDate() + i); const di = iso(d), s = sessionFor(di);
-    h += `<h3>${DAYN[s.n]} ${di.slice(5)} — ${esc(s.day.label)} ${s.items.length && st.complete[di] ? '✓' : ''}</h3>`;
+    h += `<h3>${DAYN[s.n]} ${di.slice(5)} — ${esc(s.day.label)} ${s.items.length && st.complete[di] ? '✓' : ''}</h3>` + equipHtml(s.day);
     h += s.day.exercises.length ? s.day.exercises.map(e => exHtml(e, di, s.n, false)).join('') : `<p class="muted">${esc(s.day.text)}</p>`;
   }
   V.innerHTML = h; V.querySelectorAll('.ex .body').forEach(b => b.onclick = () => b.parentElement.classList.toggle('open'));
