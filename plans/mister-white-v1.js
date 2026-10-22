@@ -60,7 +60,27 @@ registerPlan({
     "suffix": ", 3 s hold"
    },
    "tempo": "—",
-   "note": "Glide head straight back, making a double chin. Mistake: tipping chin up or down."
+   "note": "Glide head straight back, making a double chin. Mistake: tipping chin up or down.",
+   "media": {
+    "type": "image",
+    "license": "Original line drawing, generated for this app (owned by Jeffery Hogan)",
+    "licenseUrl": "",
+    "author": "Jeffery Hogan",
+    "sourceUrl": "",
+    "changes": "Generated with an image tool; cropped to a shared box, 600px WebP. Start frame hand-edited (PIL shear/rotate).",
+    "frames": [
+     {
+      "file": "media/ld-chin-tuck.webp",
+      "label": "Start: forward head"
+     },
+     {
+      "file": "media/ld-chin-tuck-2.webp",
+      "label": "End: chin tucked"
+     }
+    ],
+    "width": 600,
+    "height": 450
+   }
   },
   {
    "id": "wu3",
@@ -73,7 +93,27 @@ registerPlan({
     "suffix": ""
    },
    "tempo": "3 s up / 3 s down",
-   "note": "Low back, upper back, and head stay on wall. Mistake: ribs flaring to fake range."
+   "note": "Low back, upper back, and head stay on wall. Mistake: ribs flaring to fake range.",
+   "media": {
+    "type": "image",
+    "license": "Original line drawing, generated for this app (owned by Jeffery Hogan)",
+    "licenseUrl": "",
+    "author": "Jeffery Hogan",
+    "sourceUrl": "",
+    "changes": "Generated with an image tool; cropped to a shared box, 600px WebP.",
+    "frames": [
+     {
+      "file": "media/ld-wall-angel.webp",
+      "label": "Start: arms in W"
+     },
+     {
+      "file": "media/ld-wall-angel-2.webp",
+      "label": "End: arms overhead"
+     }
+    ],
+    "width": 600,
+    "height": 450
+   }
   },
   {
    "id": "wu4",
@@ -160,7 +200,23 @@ registerPlan({
      },
      "tempo": "Rest 90 s",
      "note": "Stand on towel, hinge, chest up, pull at 50–70% effort; rotate knee angle weekly. Mistake: max effort or holding breath.",
-     "harder": "70–80% effort, 45 s, 3 knee angles"
+     "harder": "70–80% effort, 45 s, 3 knee angles",
+     "media": {
+      "type": "image",
+      "license": "Original line drawing, generated for this app (owned by Jeffery Hogan)",
+      "licenseUrl": "",
+      "author": "Jeffery Hogan",
+      "sourceUrl": "",
+      "changes": "Generated with an image tool; cropped to a shared box, 600px WebP.",
+      "frames": [
+       {
+        "file": "media/ld-towel-deadlift.webp",
+        "label": "Hold"
+       }
+      ],
+      "width": 600,
+      "height": 450
+     }
     },
     {
      "id": "d1e1",
@@ -236,7 +292,23 @@ registerPlan({
      },
      "tempo": "Rest 60 s",
      "note": "Comfortable depth, back flat on wall. Mistake: going too deep with knee discomfort.",
-     "harder": "Deeper (pain-free) → 60 s"
+     "harder": "Deeper (pain-free) → 60 s",
+     "media": {
+      "type": "image",
+      "license": "Original line drawing, generated for this app (owned by Jeffery Hogan)",
+      "licenseUrl": "",
+      "author": "Jeffery Hogan",
+      "sourceUrl": "",
+      "changes": "Generated with an image tool; cropped to a shared box, 600px WebP.",
+      "frames": [
+       {
+        "file": "media/ld-wall-sit.webp",
+        "label": "Hold"
+       }
+      ],
+      "width": 600,
+      "height": 450
+     }
     },
     {
      "id": "d1e4",
@@ -320,7 +392,31 @@ registerPlan({
      },
      "tempo": "2 s hold / 45 s",
      "note": "Squeeze shoulder blades back and down. Mistake: shrugging toward ears.",
-     "harder": null
+     "harder": null,
+     "media": {
+      "type": "image",
+      "license": "Original line drawing, generated for this app (owned by Jeffery Hogan)",
+      "licenseUrl": "",
+      "author": "Jeffery Hogan",
+      "sourceUrl": "",
+      "changes": "Generated with an image tool; cropped to a shared box, 600px WebP. W lifted frame hand-edited (added offset shadow).",
+      "frames": [
+       {
+        "file": "media/ld-prone-tw.webp",
+        "label": "T: arms out"
+       },
+       {
+        "file": "media/ld-prone-tw-2.webp",
+        "label": "W: on the floor (overhead view)"
+       },
+       {
+        "file": "media/ld-prone-tw-3.webp",
+        "label": "W: hands & elbows hovering"
+       }
+      ],
+      "width": 600,
+      "height": 600
+     }
     },
     {
      "id": "d2e2",
@@ -397,7 +493,23 @@ registerPlan({
      },
      "tempo": "Rest 60 s",
      "note": "Towel around post, lean back, blades squeezed. Mistake: pulling with biceps only.",
-     "harder": null
+     "harder": null,
+     "media": {
+      "type": "image",
+      "license": "Original line drawing, generated for this app (owned by Jeffery Hogan)",
+      "licenseUrl": "",
+      "author": "Jeffery Hogan",
+      "sourceUrl": "",
+      "changes": "Generated with an image tool; cropped to a shared box, 600px WebP.",
+      "frames": [
+       {
+        "file": "media/ld-towel-row.webp",
+        "label": "Hold"
+       }
+      ],
+      "width": 600,
+      "height": 450
+     }
     },
     {
      "id": "d2e5",
@@ -455,7 +567,27 @@ registerPlan({
      },
      "tempo": "Slow",
      "note": "Roll under mid-back, hands support head, extend over it. Mistake: arching the low back instead.",
-     "harder": null
+     "harder": null,
+     "media": {
+      "type": "image",
+      "license": "Original line drawing, generated for this app (owned by Jeffery Hogan)",
+      "licenseUrl": "",
+      "author": "Jeffery Hogan",
+      "sourceUrl": "",
+      "changes": "Generated with an image tool; cropped to a shared box, 600px WebP.",
+      "frames": [
+       {
+        "file": "media/ld-thoracic-ext.webp",
+        "label": "Start"
+       },
+       {
+        "file": "media/ld-thoracic-ext-2.webp",
+        "label": "Finish: extended over towel"
+       }
+      ],
+      "width": 600,
+      "height": 338
+     }
     },
     {
      "id": "d3e2",
@@ -858,7 +990,27 @@ registerPlan({
      },
      "tempo": "Slow",
      "note": "Low back, upper back, and head stay on wall. Mistake: ribs flaring to fake range.",
-     "harder": null
+     "harder": null,
+     "media": {
+      "type": "image",
+      "license": "Original line drawing, generated for this app (owned by Jeffery Hogan)",
+      "licenseUrl": "",
+      "author": "Jeffery Hogan",
+      "sourceUrl": "",
+      "changes": "Generated with an image tool; cropped to a shared box, 600px WebP.",
+      "frames": [
+       {
+        "file": "media/ld-wall-angel.webp",
+        "label": "Start: arms in W"
+       },
+       {
+        "file": "media/ld-wall-angel-2.webp",
+        "label": "End: arms overhead"
+       }
+      ],
+      "width": 600,
+      "height": 450
+     }
     },
     {
      "id": "d5e4",
@@ -872,7 +1024,23 @@ registerPlan({
      },
      "tempo": "Rest 60 s",
      "note": "Shoulders pulled away from ears. Mistake: shoulders hiked to ears.",
-     "harder": null
+     "harder": null,
+     "media": {
+      "type": "image",
+      "license": "Original line drawing, generated for this app (owned by Jeffery Hogan)",
+      "licenseUrl": "",
+      "author": "Jeffery Hogan",
+      "sourceUrl": "",
+      "changes": "Generated with an image tool; cropped to a shared box, 600px WebP.",
+      "frames": [
+       {
+        "file": "media/ld-dead-hang.webp",
+        "label": "Hold (feet down)"
+       }
+      ],
+      "width": 600,
+      "height": 800
+     }
     },
     {
      "id": "d5e5",
@@ -923,7 +1091,23 @@ registerPlan({
      },
      "tempo": "Rest 60 s",
      "note": "50–70% effort, breathe. Mistake: straining to max.",
-     "harder": null
+     "harder": null,
+     "media": {
+      "type": "image",
+      "license": "Original line drawing, generated for this app (owned by Jeffery Hogan)",
+      "licenseUrl": "",
+      "author": "Jeffery Hogan",
+      "sourceUrl": "",
+      "changes": "Generated with an image tool; cropped to a shared box, 600px WebP.",
+      "frames": [
+       {
+        "file": "media/ld-towel-deadlift.webp",
+        "label": "Hold"
+       }
+      ],
+      "width": 600,
+      "height": 450
+     }
     },
     {
      "id": "d6e1",
@@ -937,7 +1121,23 @@ registerPlan({
      },
      "tempo": "Rest 60 s",
      "note": "Comfortable depth, back flat on wall. Mistake: going too deep with knee discomfort.",
-     "harder": "Deeper (pain-free) → 60 s"
+     "harder": "Deeper (pain-free) → 60 s",
+     "media": {
+      "type": "image",
+      "license": "Original line drawing, generated for this app (owned by Jeffery Hogan)",
+      "licenseUrl": "",
+      "author": "Jeffery Hogan",
+      "sourceUrl": "",
+      "changes": "Generated with an image tool; cropped to a shared box, 600px WebP.",
+      "frames": [
+       {
+        "file": "media/ld-wall-sit.webp",
+        "label": "Hold"
+       }
+      ],
+      "width": 600,
+      "height": 450
+     }
     },
     {
      "id": "d6e2",

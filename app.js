@@ -125,6 +125,7 @@ function exHtml(ex, dateIso, dayNum, interactive) {
   <div class="body"><div class="nm">${esc(ex.name)}</div><div class="rx"><b>${esc(r.text)}</b>${r.changed ? '<span class="chg">wk ' + weekOf(dateIso) + '</span>' : ''} · ${esc(ex.tempo)}</div>
   <div class="note">${mediaHtml(ex.media)}${esc(ex.note)}${ex.harder ? '<br><i>Harder: ' + esc(ex.harder) + '</i>' : ''}</div></div></div>`;
 }
+const lnk = (u, t) => u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${t}</a>` : t;
 function mediaHtml(m) {
   if (!m || !m.frames) return '';
   const n = m.frames.length, lab = i => m.frames[i].label || (i ? 'End position' : 'Start position');
@@ -134,7 +135,7 @@ function mediaHtml(m) {
     : `<div class="mbox single" style="aspect-ratio:${m.width}/${m.height}" role="img" aria-label="Demonstration image">${imgs}</div>`;
   return `<figure class="media">${box}
   ${m.variant ? `<div class="variant">⚠ ${esc(m.variant)}</div>` : ''}
-  <figcaption>${esc(m.author)} · <a href="${esc(m.licenseUrl)}" target="_blank" rel="noopener">${esc(m.license)}</a> · <a href="#" class="credlink">Credits</a></figcaption></figure>`;
+  <figcaption>${esc(m.author)} · ${lnk(m.licenseUrl, esc(m.license))} · <a href="#" class="credlink">Credits</a></figcaption></figure>`;
 }
 function flip(box) {
   const n = +box.dataset.n, i = (+box.dataset.i + 1) % n, labels = JSON.parse(box.dataset.labels);
@@ -155,8 +156,8 @@ function renderCredits() {
   const short = u => esc(u.replace(/^https?:\/\//, '').slice(0, 60));
   V.innerHTML = `<h2>Credits</h2><p class="muted">${esc(plan.credit || '')} Exercise media: ${ms.length} items (${nf} image files), bundled for offline use. Public-domain and Unlicense items need no attribution; CC BY-SA items are credited here, and their resized derivatives are shared under the same license.</p>` +
     ms.map(m => `<div class="credit" data-file="${esc(m.frames[0].file)}"><img src="${esc(m.frames[0].file)}" alt="" loading="lazy"><div><b>${esc(m.used.join(', '))}</b><br>
-    Author: ${esc(m.author)}<br>License: <a href="${esc(m.licenseUrl)}" target="_blank" rel="noopener">${esc(m.license)}</a><br>
-    ${m.frames.map((f, i) => `${m.frames.length > 1 ? 'Frame ' + (i + 1) + (f.label ? ' (' + esc(f.label) + ')' : '') + ' source' : 'Source'}: <a href="${esc(f.sourceUrl)}" target="_blank" rel="noopener">${short(f.sourceUrl)}</a><br>`).join('')}
+    Author: ${esc(m.author)}<br>License: ${lnk(m.licenseUrl, esc(m.license))}<br>
+    ${m.frames.map((f, i) => `${m.frames.length > 1 ? 'Frame ' + (i + 1) + (f.label ? ' (' + esc(f.label) + ')' : '') + ' source' : 'Source'}: ${f.sourceUrl ? lnk(f.sourceUrl, short(f.sourceUrl)) : 'original (generated for this app)'}<br>`).join('')}
     Changes: ${esc(m.changes)}${m.frames.slice(1).map(f => f.changes ? ' ' + esc(f.changes) : '').join('')}${m.variant ? '<br>Note: ' + esc(m.variant) : ''}</div></div>`).join('') +
     `<p class="muted">App code and plan text: personal use. Icons generated for this app.</p>`;
 }
